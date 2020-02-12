@@ -24,7 +24,7 @@ public class ContactServiceRest {
 	
 	@GET
 	@Path("/id/{id}")
-	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Produces({MediaType.APPLICATION_JSON})
 	public Contact getContactById (@PathParam("id") long id) {
 		return dao.findById(id);
 		
@@ -39,9 +39,9 @@ public class ContactServiceRest {
 	@POST
 	@Path("/new")
 	@Consumes({MediaType.APPLICATION_JSON})
-	public Contact save(Contact contact) {
+	public long save(Contact contact) {
 		dao.save(contact);
-		return contact ;
+		return contact.getId() ;
 		
 				//contact.getId();
 		
@@ -57,6 +57,7 @@ public class ContactServiceRest {
 	}
 	@DELETE
 	@Path("/del/{id}")
+	
 	public String suprrimer(@PathParam ("id") long id) {
 		dao.remove(id);
 		
